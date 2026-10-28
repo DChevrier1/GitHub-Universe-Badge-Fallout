@@ -7,9 +7,13 @@ The app and browser preview are silent; notifications use the screen and case LE
 
 ## On the screen
 
-| Your Pip-Boy | Offline waterfront map | Focus timer |
-| --- | --- | --- |
-| ![Generic Vault Dweller status with the color Vault Boy mascot](screenshots/status.png) | ![Offline waterfront map with public Fort Mason landmarks](screenshots/world-map.png) | ![Running 25-minute focus timer with pause and reset controls](screenshots/focus-timer.png) |
+| Your Pip-Boy | Offline waterfront map |
+| --- | --- |
+| ![Generic Vault Dweller status with the color Vault Boy mascot](screenshots/status.png) | ![Offline waterfront map with public Fort Mason landmarks](screenshots/world-map.png) |
+
+| Fort Mason venue map | Focus timer |
+| --- | --- |
+| ![Fort Mason campus map with Festival Pavilion and Main Stage selected](screenshots/venue-map.png) | ![Running 25-minute focus timer with pause and reset controls](screenshots/focus-timer.png) |
 
 Simulator screenshots rendered from the included app code at 2× its native
 320 × 240 resolution. The profile and example telemetry are generic; displayed
@@ -30,6 +34,9 @@ a promise of all-day battery runtime.
 
 The download starts with a generic profile and an empty agenda. Public waterfront
 and Fort Mason maps are included; personal hotel and social stops are excluded.
+The LOCAL map includes published session venue and floor labels checked on
+October 28, 2026. It retains campus building geometry; it does not reproduce the
+GitHub Events mobile app's interior floorplan.
 
 ## Install in five steps
 
@@ -112,6 +119,33 @@ reminders require a correct badge clock and a running custom app. They cannot wa
 a powered-off badge or appear over a stock app. See [EFFECTS.md](EFFECTS.md) for
 power thresholds, intervals and lighting behavior.
 
+## Offline maps and venue locations
+
+**MAP → LOCAL** shows permanent Fort Mason buildings with the published event
+locations below. Use Up/Down to browse buildings, then hold Select to open
+**DETAILS** for the complete room labels and access notes.
+
+| Published location | Campus marker |
+| --- | --- |
+| Main Stage, The Speakeasy, Silent Disco demos/breakouts | Festival Pavilion |
+| Workshops, Level 1; Demos & Donuts, Level 2 | Gateway Pavilion |
+| Cowell Theater | North end of Gateway Pavilion |
+| BATS Theatre, Floor 3 | Building B |
+| Sandbox / Founders Inc., Floor 3 | Building C |
+| Ship & Tell | Firehouse |
+
+Assignments come from the [official public session catalog](https://reg.githubuniverse.com/flow/github/universe26/attendee-portal/page/sessioncatalog),
+checked October 28, 2026. Building geography follows OpenStreetMap and the
+[Fort Mason campus reference](https://fortmason.org/wp-content/uploads/2025/11/Map.jpg).
+The Outdoor Theater is in Gateway Plaza outside the pavilion; the Gateway marker
+does not identify that stage's coordinates. Follow onsite signs for entrances,
+floors and accessibility. These are building references, not verified interior
+room, booth or stage positions, GPS locations, or calculated walking routes.
+
+Maps work offline and retain their exported snapshot until the app is updated.
+The generic repository still ships an empty agenda; these public venue labels
+do not import anyone's bookings or personal calendar.
+
 ## Build and test from source
 
 Python 3.9+ is needed only for local development and packaging. No external Python
@@ -130,7 +164,7 @@ Keep the documentation and screenshots with the download for reference. Copy
 only the app folder to the badge.
 
 Runtime code lives in `apps/fallout/`; portable logic is in `core.py`. The app is
-self-contained and does not require either of the other two custom apps. Stock
+self-contained and does not require any other custom app. Stock
 firmware is a device prerequisite and is deliberately not redistributed here.
 
 ## Compatibility and troubleshooting
