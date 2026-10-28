@@ -7,7 +7,7 @@ import zipfile
 ROOT=Path(__file__).resolve().parent
 APP=ROOT/'apps'/'fallout'
 FILES=['__init__.py', 'assets/ATTRIBUTION.md', 'assets/COLOR_PROMPT.md', 'assets/vault-boy-color-sheet.png', 'assets/vault-boy.gif', 'companion.py', 'core.py', 'data.py', 'font5x7.py', 'fontvector.py', 'icon.png', 'mascot.py']
-DOCS=['README.md', 'NOTICE.md', 'EFFECTS.md']
+DOCS=['README.md', 'NOTICE.md', 'EFFECTS.md', 'screenshots/status.png', 'screenshots/world-map.png', 'screenshots/focus-timer.png']
 def build():
     destination=ROOT/'dist'
     if destination.is_symlink():raise ValueError('Build directory must not be a symlink')
@@ -32,7 +32,7 @@ def build():
         archive.writestr('INSTALL.txt','Copy only apps/'+APP.name+' to the BADGER apps directory. Back up any existing custom app first. Keep every other file, especially secrets.py. Eject safely and restart. See README.md for full instructions.\n')
         for name in DOCS:
             path=ROOT/name
-            if path.is_symlink():raise ValueError('Symlink in documentation: '+name)
+            if any(part.is_symlink() for part in (path, *path.parents) if part != ROOT.parent):raise ValueError('Symlink in documentation: '+name)
             archive.writestr(name,path.read_bytes())
     output.write_bytes(buffer.getvalue())
     print(output)

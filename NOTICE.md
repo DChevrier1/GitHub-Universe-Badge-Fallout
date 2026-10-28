@@ -3,7 +3,7 @@
 Created with AI by DChevrier1. These are unofficial custom apps, not stock
 GitHub/Pimoroni firmware or an official GitHub product. GitHub and Octocat names
 and marks belong to their respective owners. No general open-source license is
-granted by this private repository. Keeping source available here does not
+granted by this repository. Keeping source available here does not
 relicense third-party characters, artwork, map data or trademarks.
 
 Fallout and Vault Boy belong to Bethesda/ZeniMax and their respective rights

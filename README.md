@@ -3,22 +3,30 @@
 A pocket Pip-Boy for your conference day: animated Vault Boy, offline maps,
 packing checklists, quests, focus timers, sensor readings and optional reminders.
 Built for the Universe 2026 badge's 320 × 240 screen and physical buttons.
+The app and browser preview are silent; notifications use the screen and case LEDs.
 
-<img src="apps/fallout/assets/vault-boy.gif" width="160" alt="Shaded walking Vault Boy animation">
+## On the screen
 
-Choose **Color or Shaded** in green or gold, crisp **Pixel or Vector** text,
-and a translucent CRT sweep that passes over the entire screen. The 12-row band
-moves at 96 pixels/second, then waits a fresh random **20–45 seconds after the
-pass ends**. Pixel Glow and outline appearance options are removed.
+| Your Pip-Boy | Offline waterfront map | Focus timer |
+| --- | --- | --- |
+| ![Generic Vault Dweller status with the color Vault Boy mascot](screenshots/status.png) | ![Offline waterfront map with public Fort Mason landmarks](screenshots/world-map.png) | ![Running 25-minute focus timer with pause and reset controls](screenshots/focus-timer.png) |
 
-Decorative lights start **Off**. Below **10%** battery, automatic **ECO** mode dims
-the panel temporarily, turns off CRT and case LEDs, freezes decorative animation,
-and reduces redraws and sensor polling. Buttons, timers and reminder cards still
-work. Normal behavior returns at **12%**, avoiding repeated mode changes near the
-threshold, with a fresh full 20–45 second pause before the next CRT sweep. The
-browser preview also shows the case LEDs off in ECO. Held directional controls
-keep their normal repeat delay after a slow frame, without replaying missed
-repeats. This is power-saving behavior, not a promise of all-day runtime.
+Simulator screenshots rendered from the included app code at 2× its native
+320 × 240 resolution. The profile and example telemetry are generic; displayed
+battery values are sample inputs, not hardware measurements.
+
+- **Make it yours:** Color or Shaded Vault Boy, green or gold themes, and Pixel or
+  Vector text. A subtle CRT sweep passes over the entire screen.
+- **Keep your day together:** packing lists, quests, optional agenda reminders,
+  offline maps, focus timers and available badge sensors.
+- **Save power automatically:** decorative lights start Off. Below 10% battery,
+  ECO dims the screen, stops decorative animation and lights, and reduces polling.
+  Buttons, timers and reminder cards remain usable; normal behavior returns at 12%.
+
+The 12-row CRT sweep moves at 96 pixels/second, then pauses for a fresh random
+20–45 seconds after each pass. ECO recovery also starts a full pause. See
+[EFFECTS.md](EFFECTS.md) for details. These controls reduce activity; they are not
+a promise of all-day battery runtime.
 
 The download starts with a generic profile and an empty agenda. Public waterfront
 and Fort Mason maps are included; personal hotel and social stops are excluded.
@@ -29,8 +37,7 @@ You need a **GitHub Universe 2026 Badger 2350 badge**, its supplied firmware and
 USB cable that carries data. No firmware flashing or Python installation is
 needed for the direct-folder method.
 
-1. Download this repository using **Code → Download ZIP**, then extract it. The
-   repository is private, so you must be signed into an account with access.
+1. Download this repository using **Code → Download ZIP**, then extract it.
 2. Open the badge's supplied **USB Disk / Mass Storage** app and connect USB.
    A drive named **BADGER** should appear. Copy its current contents somewhere
    safe before making changes.
@@ -116,9 +123,10 @@ python3 build.py
 ```
 
 The build creates `dist/fallout-badge.zip` with only the allowlisted app, install
-instructions and linked documentation. Extract it and copy `apps/fallout` using the steps above. Personal
-`config.json`, credentials and save files are excluded from the build allowlist.
-Keep README and NOTICE with the download for instructions and provenance; copy
+instructions, screenshots and linked documentation. Extract it and copy
+`apps/fallout` using the steps above. Personal configuration, credentials and
+save files are excluded from the build allowlist.
+Keep the documentation and screenshots with the download for reference. Copy
 only the app folder to the badge.
 
 Runtime code lives in `apps/fallout/`; portable logic is in `core.py`. The app is
@@ -141,9 +149,9 @@ also tested locally. Older badges and other firmware versions are not verified.
 - **No colored case lights:** the badge's case LEDs are white; screen colors are
   unrelated. Check the app's brightness/decorative-light settings.
 
-This repository is **private**. It contains only this custom app, generic defaults,
-tests and documentation—no stock badge apps, firmware, personal agenda, passwords,
-Wi-Fi secrets, device backups or browser sessions.
+The download contains this custom app, generic defaults, tests and documentation.
+Stock firmware, personal agendas, credentials, device backups and browser sessions
+are excluded.
 
 ## Credits and maintenance
 
@@ -151,6 +159,6 @@ Wi-Fi secrets, device backups or browser sessions.
 trademark provenance. This is an unofficial custom app, not an official firmware
 release. Third-party artwork and marks retain their owners' rights.
 
-For each completed change, update the README/help, run relevant checks, and push
-the completed source to this private repository. Keep it private until the owner
-explicitly approves a visibility change.
+For each change, update the README and in-app help, run the checks above, and
+keep documentation screenshots aligned with the included app. Keep personal
+configuration and save data outside version control.
